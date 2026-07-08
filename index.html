@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantex — تواصل معنا</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#050505;
+  --bg-1:#141414;
+  --ink-0:#ffffff;
+  --ink-1:#c9c9c9;
+  --ink-2:#8a8a8a;
+  --line:rgba(255,255,255,.14);
+  --line-strong:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.055);
+  --glass-hover:rgba(255,255,255,.1);
+  --radius:20px;
+  --sans:'Poppins',sans-serif;
+  --arabic:'Tajawal','Poppins',sans-serif;
+  --display:'Archivo Black','Poppins',sans-serif;
+}
+
+*{box-sizing:border-box;}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 0%, #1c1c1c 0%, #0a0a0a 45%, #000 100%);
+  color:var(--ink-0);
+  font-family:var(--arabic);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* subtle textile weave texture across the whole page */
+.weave-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.028) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.02) 0 1px, transparent 1px 11px);
+}
+
+.glow{
+  position:fixed;
+  z-index:0;
+  border-radius:50%;
+  filter:blur(90px);
+  pointer-events:none;
+}
+.glow-a{
+  width:480px;height:480px;
+  top:-160px; left:-140px;
+  background:rgba(255,255,255,.07);
+  animation:drift 14s ease-in-out infinite;
+}
+.glow-b{
+  width:420px;height:420px;
+  bottom:-180px; right:-120px;
+  background:rgba(255,255,255,.05);
+  animation:driftB 17s ease-in-out infinite;
+}
+
+.stage{
+  position:relative;
+  z-index:1;
+  max-width:480px;
+  margin:0 auto;
+  padding:56px 22px 40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+}
+
+/* ---------- brand block ---------- */
+.brand-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  margin-bottom:36px;
+  animation:fadeDown .7s ease both;
+}
+
+.logo-ring{
+  position:relative;
+  width:118px;
+  height:118px;
+  border-radius:50%;
+  padding:5px;
+  margin-bottom:20px;
+  background:linear-gradient(145deg, rgba(255,255,255,.35), rgba(255,255,255,.05) 40%, rgba(255,255,255,.25));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 18px 40px -14px rgba(0,0,0,.85);
+}
+.logo-ring::before{
+  content:"";
+  position:absolute;
+  inset:-7px;
+  border-radius:50%;
+  z-index:-1;
+  background:conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,.55) 60deg, transparent 140deg, transparent 220deg, rgba(255,255,255,.35) 300deg, transparent 360deg);
+  animation:haloSpin 6s linear infinite;
+}
+.logo-img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  display:block;
+  object-fit:cover;
+  background:#0a0a0a;
+}
+.ring-shine{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  box-shadow:inset 0 2px 6px rgba(255,255,255,.25), inset 0 -8px 16px rgba(0,0,0,.5);
+  pointer-events:none;
+}
+
+.brand-name{
+  font-family:var(--display);
+  font-size:34px;
+  letter-spacing:4px;
+  margin:0 0 6px;
+  color:var(--ink-0);
+  background:linear-gradient(100deg,#ffffff 0%, #7a7a7a 25%, #ffffff 50%, #7a7a7a 75%, #ffffff 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:textShimmer 5s linear infinite;
+}
+
+.brand-tagline{
+  margin:0;
+  font-family:var(--arabic);
+  font-weight:400;
+  font-size:14.5px;
+  letter-spacing:.3px;
+  color:var(--ink-2);
+}
+
+/* ---------- links ---------- */
+.links{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.glass-link{
+  --d:0;
+  --accent:#ffffff;
+  --accent-soft:rgba(255,255,255,.4);
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  width:100%;
+  padding:16px 18px;
+  border-radius:var(--radius);
+  background:var(--glass);
+  border:1.5px solid var(--accent-soft);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.06) inset,
+    0 10px 30px -18px rgba(0,0,0,.9),
+    0 0 0 0 transparent;
+  color:var(--ink-0);
+  text-decoration:none;
+  overflow:hidden;
+  isolation:isolate;
+  opacity:0;
+  transform:translateY(14px);
+  animation-name:riseIn, borderGlow;
+  animation-duration:.6s, 3s;
+  animation-timing-function:cubic-bezier(.2,.7,.2,1), ease-in-out;
+  animation-iteration-count:1, infinite;
+  animation-fill-mode:forwards, none;
+  animation-delay:calc(.12s + var(--d) * .08s), calc(.7s + var(--d) * .2s);
+  transition:background .25s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.glass-link::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  background:linear-gradient(120deg, rgba(255,255,255,.16), transparent 40%);
+  opacity:.6;
+}
+
+.link-ig{ --accent:#e0397e; --accent-soft:rgba(224,57,126,.4); }
+.link-wa{ --accent:#25D366; --accent-soft:rgba(37,211,102,.4); }
+.link-vb{ --accent:#8f5cf2; --accent-soft:rgba(143,92,242,.4); }
+.link-call{ --accent:#2fd583; --accent-soft:rgba(47,213,131,.4); }
+.link-maps{ --accent:#4285F4; --accent-soft:rgba(66,133,244,.4); }
+.link-fb{ --accent:#1877F2; --accent-soft:rgba(24,119,242,.4); }
+
+.glass-link:hover,
+.glass-link:focus-visible{
+  background:var(--glass-hover);
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.08) inset,
+    0 18px 34px -16px rgba(0,0,0,.95),
+    0 0 24px -2px var(--accent);
+  animation-play-state:paused, paused;
+}
+
+.glass-link:active{
+  transform:translateY(-1px) scale(.99);
+}
+
+.link-icon{
+  flex:0 0 auto;
+  position:relative;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:13px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--ink-0);
+  transition:transform .35s cubic-bezier(.3,1.6,.4,1);
+}
+.link-icon svg{width:19px;height:19px; position:relative; z-index:1;}
+
+.glass-link:hover .link-icon{
+  transform:scale(1.12) rotate(-6deg);
+}
+
+/* ---- authentic brand colors per platform ---- */
+.icon-ig{
+  background:linear-gradient(135deg,#4f5bd5,#962fbf 30%,#d62976 55%,#fa7e1e 80%,#feda75);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(214,41,118,.55);
+  animation:iconGlow 3.2s ease-in-out infinite;
+}
+.icon-wa{
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(37,211,102,.55);
+  animation:iconGlow 3.2s ease-in-out infinite;
+  animation-delay:.4s;
+}
+.icon-vb{
+  background:linear-gradient(135deg,#8f5cf2,#5b3fc9);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(124,86,235,.55);
+  animation:iconGlow 3.2s ease-in-out infinite;
+  animation-delay:.8s;
+}
+.icon-call{
+  background:linear-gradient(135deg,#2fd583,#1a9e63);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(47,213,131,.55);
+  animation:iconGlow 3.2s ease-in-out infinite;
+  animation-delay:1.2s;
+}
+.icon-maps{
+  background:conic-gradient(from 220deg,#4285F4 0deg,#34A853 90deg,#FBBC05 180deg,#EA4335 270deg,#4285F4 360deg);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(66,133,244,.5);
+  animation:iconGlow 3.2s ease-in-out infinite;
+  animation-delay:1.6s;
+}
+.icon-fb{
+  background:linear-gradient(135deg,#1877F2,#0C5DC7);
+  border-color:rgba(255,255,255,.25);
+  color:#fff;
+  --glow:rgba(24,119,242,.55);
+  animation:iconGlow 3.2s ease-in-out infinite;
+  animation-delay:2s;
+}
+
+/* small "reachable now" pulse dot for direct-contact channels */
+.status-dot{
+  position:absolute;
+  top:-3px;
+  right:-3px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:#3ddc74;
+  border:2px solid #0a0a0a;
+  box-shadow:0 0 0 rgba(61,220,116,.6);
+  animation:dotPulse 2s ease-out infinite;
+  z-index:2;
+}
+
+.link-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  flex:1 1 auto;
+  min-width:0;
+}
+.link-title{
+  font-family:var(--arabic);
+  font-weight:700;
+  font-size:15.5px;
+  color:var(--ink-0);
+}
+.link-sub{
+  font-family:var(--sans);
+  font-size:12.5px;
+  color:var(--ink-2);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.link-arrow{
+  flex:0 0 auto;
+  font-size:16px;
+  color:var(--ink-2);
+  transition:transform .25s ease, color .25s ease;
+}
+.glass-link:hover .link-arrow{
+  transform:translate(3px,-3px);
+  color:var(--ink-0);
+}
+
+/* ---------- footer ---------- */
+.stage-footer{
+  margin-top:auto;
+  padding-top:40px;
+  font-size:11.5px;
+  letter-spacing:.3px;
+  color:rgba(255,255,255,.35);
+  text-align:center;
+}
+
+/* ---------- animations ---------- */
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-14px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes riseIn{
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes iconGlow{
+  0%, 100%{ box-shadow:0 0 0 0 transparent, 0 4px 14px -4px rgba(0,0,0,.6); }
+  50%{ box-shadow:0 0 16px 2px var(--glow), 0 4px 14px -4px rgba(0,0,0,.6); }
+}
+
+@keyframes dotPulse{
+  0%{ box-shadow:0 0 0 0 rgba(61,220,116,.55); }
+  70%{ box-shadow:0 0 0 7px rgba(61,220,116,0); }
+  100%{ box-shadow:0 0 0 0 rgba(61,220,116,0); }
+}
+
+@keyframes drift{
+  0%, 100%{ transform:translate(0,0) scale(1); }
+  50%{ transform:translate(30px,-20px) scale(1.08); }
+}
+@keyframes driftB{
+  0%, 100%{ transform:translate(0,0) scale(1); }
+  50%{ transform:translate(-25px,25px) scale(1.05); }
+}
+
+@keyframes haloSpin{
+  to{ transform:rotate(360deg); }
+}
+
+@keyframes borderGlow{
+  0%, 100%{
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.06) inset,
+      0 10px 30px -18px rgba(0,0,0,.9),
+      0 0 0 0 transparent;
+  }
+  50%{
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.06) inset,
+      0 10px 30px -18px rgba(0,0,0,.9),
+      0 0 18px 1px var(--accent);
+  }
+}
+
+@keyframes textShimmer{
+  0%{ background-position:0% 50%; }
+  100%{ background-position:200% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .brand-block, .glass-link{animation:none !important; opacity:1 !important; transform:none !important;}
+  .link-icon, .status-dot, .glow, .logo-ring::before, .brand-name{animation:none !important;}
+}
+
+@media (max-width:380px){
+  .brand-name{font-size:28px; letter-spacing:3px;}
+  .logo-ring{width:100px;height:100px;}
+  .glass-link{padding:14px;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="weave-bg" aria-hidden="true"></div>
+<div class="glow glow-a" aria-hidden="true"></div>
+<div class="glow glow-b" aria-hidden="true"></div>
+
+<main class="stage">
+
+  <header class="brand-block">
+    <div class="logo-ring">
+      <img src="logo.png" alt="شعار Fantex" class="logo-img">
+      <span class="ring-shine" aria-hidden="true"></span>
+    </div>
+    <h1 class="brand-name">FANTEX</h1>
+    <p class="brand-tagline">نُسيج يعكس أناقتك</p>
+  </header>
+
+  <nav class="links" aria-label="روابط التواصل">
+
+    <a class="glass-link link-ig" href="https://www.instagram.com/fan.tex?igsh=MWRoNmRwdGVmamh5NA==" target="_blank" rel="noopener" style="--d:0">
+      <span class="link-icon icon-ig">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">إنستغرام</span>
+        <span class="link-sub">fan.tex@</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="glass-link link-wa" href="https://wa.me/213560344187" target="_blank" rel="noopener" style="--d:1">
+      <span class="link-icon icon-wa">
+        <span class="status-dot" aria-hidden="true"></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">واتساب</span>
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="glass-link link-vb" href="viber://chat?number=%2B213560344187" style="--d:2">
+      <span class="link-icon icon-vb">
+        <span class="status-dot" aria-hidden="true"></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817.57 12.933.488 18.776 6.12 20.36h.003l-.004 2.416s-.037.977.61 1.177c.777.242 1.234-.5 1.98-1.302.407-.44.972-1.084 1.397-1.58 3.85.326 6.812-.416 7.15-.525.776-.252 5.176-.816 5.892-6.657.74-6.02-.36-9.83-2.34-11.546-.596-.55-3.006-2.3-8.375-2.323 0 0-.395-.025-1.037-.017zm.058 1.693c.545-.004.88.017.88.017 4.542.02 6.717 1.388 7.222 1.846 1.675 1.435 2.53 4.868 1.906 9.897v.002c-.604 4.878-4.174 5.184-4.832 5.395-.28.09-2.882.737-6.153.524 0 0-2.436 2.94-3.197 3.704-.12.12-.26.167-.352.144-.13-.033-.166-.188-.165-.414l.02-4.018c-4.762-1.32-4.485-6.292-4.43-8.895.054-2.604.543-4.738 1.996-6.173 1.96-1.773 5.474-2.018 7.11-2.03zm.38 2.602c-.167 0-.303.135-.304.302 0 .167.133.303.3.305 1.624.01 2.946.537 4.028 1.592 1.073 1.046 1.62 2.468 1.633 4.334.002.167.14.3.307.3.166-.002.3-.138.3-.304-.014-1.984-.618-3.596-1.816-4.764-1.19-1.16-2.692-1.753-4.447-1.765zm-3.96.695c-.19-.032-.4.005-.616.117l-.01.002c-.43.247-.816.562-1.146.932-.002.004-.006.004-.008.008-.267.323-.42.638-.46.948-.008.046-.01.093-.007.14 0 .136.022.27.065.4l.013.01c.135.48.473 1.276 1.205 2.604.42.768.903 1.5 1.446 2.186.27.344.56.673.87.984l.132.132c.31.308.64.6.984.87.686.543 1.418 1.027 2.186 1.447 1.328.733 2.126 1.07 2.604 1.206l.01.014c.13.042.265.064.402.063.046.002.092 0 .138-.008.31-.036.627-.19.948-.46.004 0 .003-.002.008-.005.37-.33.683-.72.93-1.148l.003-.01c.225-.432.15-.842-.18-1.12-.004 0-.698-.58-1.037-.83-.36-.255-.73-.492-1.113-.71-.51-.285-1.032-.106-1.248.174l-.447.564c-.23.283-.657.246-.657.246-3.12-.796-3.955-3.955-3.955-3.955s-.037-.426.248-.656l.563-.448c.277-.215.456-.737.17-1.248-.217-.383-.454-.756-.71-1.115-.25-.34-.826-1.033-.83-1.035-.137-.165-.31-.265-.502-.297zm4.49.88c-.158.002-.29.124-.3.282-.01.167.115.312.282.324 1.16.085 2.017.466 2.645 1.15.63.688.93 1.524.906 2.57-.002.168.13.306.3.31.166.003.305-.13.31-.297.025-1.175-.334-2.193-1.067-2.994-.74-.81-1.777-1.253-3.05-1.346h-.024zm.463 1.63c-.16.002-.29.127-.3.287-.008.167.12.31.288.32.523.028.875.175 1.113.422.24.245.388.62.416 1.164.01.167.15.295.318.287.167-.008.295-.15.287-.317-.03-.644-.215-1.178-.58-1.557-.367-.378-.893-.574-1.52-.607h-.018z"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">فايبر</span>
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="glass-link link-call" href="tel:+213560344187" style="--d:3">
+      <span class="link-icon icon-call">
+        <span class="status-dot" aria-hidden="true"></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">اتصال مباشر</span>
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="glass-link link-maps" href="https://www.google.com/maps/search/?api=1&query=MXX9%2BQF4+Baba+Hassen" target="_blank" rel="noopener" style="--d:4">
+      <span class="link-icon icon-maps">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">الموقع على الخريطة</span>
+        <span class="link-sub">Baba Hassen, Alger</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="glass-link link-fb" href="https://www.facebook.com/share/1BtmpaiWxA/" target="_blank" rel="noopener" style="--d:5">
+      <span class="link-icon icon-fb">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+      </span>
+      <span class="link-text">
+        <span class="link-title">فيسبوك</span>
+        <span class="link-sub">Fantex</span>
+      </span>
+      <span class="link-arrow" aria-hidden="true">↗</span>
+    </a>
+
+  </nav>
+
+  <footer class="stage-footer">
+    <span>© <span id="year"></span> Fantex — جميع الحقوق محفوظة</span>
+  </footer>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // gentle magnetic tilt on the logo ring, following the cursor (desktop only)
+  const ring = document.querySelector('.logo-ring');
+  if (ring && window.matchMedia('(hover: hover)').matches) {
+    ring.addEventListener('mousemove', (e) => {
+      const rect = ring.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      ring.style.transform = `rotateX(${(-y * 12).toFixed(2)}deg) rotateY(${(x * 12).toFixed(2)}deg)`;
+    });
+    ring.addEventListener('mouseleave', () => {
+      ring.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+    ring.style.transition = 'transform .25s ease';
+    ring.style.transformStyle = 'preserve-3d';
+  }
+
+  // simple ripple feedback on tap for glass links
+  document.querySelectorAll('.glass-link').forEach((link) => {
+    link.addEventListener('pointerdown', (e) => {
+      const rect = link.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.position = 'absolute';
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.borderRadius = '50%';
+      ripple.style.background = 'rgba(255,255,255,0.18)';
+      ripple.style.pointerEvents = 'none';
+      ripple.style.transform = 'scale(0)';
+      ripple.style.transition = 'transform .5s ease, opacity .6s ease';
+      ripple.style.opacity = '1';
+      ripple.style.zIndex = '0';
+      link.appendChild(ripple);
+      requestAnimationFrame(() => {
+        ripple.style.transform = 'scale(1)';
+        ripple.style.opacity = '0';
+      });
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+});
+
+</script>
+</body>
+</html>
