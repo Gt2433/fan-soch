@@ -3,23 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
-<meta name="description" content="Fantex — نُسيج يعكس أناقتك. تواصل معنا عبر جميع قنوات التواصل.">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Fantex">
-
 <title>Fantex — تواصل معنا</title>
-
-<!-- PWA Manifest -->
-<link rel="manifest" href="manifest.json">
 <link rel="icon" href="logo.png" type="image/png">
-<link rel="apple-touch-icon" href="logo.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg-0:#050505;
@@ -43,48 +31,19 @@ html,body{
   margin:0;
   padding:0;
   min-height:100vh;
-  background:#000;
+  background:
+    radial-gradient(circle at 50% 0%, #1c1c1c 0%, #0a0a0a 45%, #000 100%);
   color:var(--ink-0);
   font-family:var(--arabic);
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 
-/* ---------- Video Background ---------- */
-.video-bg-container{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  overflow:hidden;
-}
-
-.video-bg-container video{
-  position:absolute;
-  top:50%;
-  left:50%;
-  min-width:100%;
-  min-height:100%;
-  width:auto;
-  height:auto;
-  transform:translate(-50%, -50%);
-  object-fit:cover;
-  z-index:0;
-}
-
-.video-overlay{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(28,28,28,0.7) 0%, rgba(10,10,10,0.85) 45%, rgba(0,0,0,0.95) 100%);
-  pointer-events:none;
-}
-
-/* subtle textile weave texture on top of video */
+/* subtle textile weave texture across the whole page */
 .weave-bg{
   position:fixed;
   inset:0;
-  z-index:1;
+  z-index:0;
   pointer-events:none;
   opacity:.5;
   background-image:
@@ -94,7 +53,7 @@ html,body{
 
 .glow{
   position:fixed;
-  z-index:1;
+  z-index:0;
   border-radius:50%;
   filter:blur(90px);
   pointer-events:none;
@@ -114,7 +73,7 @@ html,body{
 
 .stage{
   position:relative;
-  z-index:2;
+  z-index:1;
   max-width:480px;
   margin:0 auto;
   padding:56px 22px 40px;
@@ -386,45 +345,6 @@ html,body{
   color:var(--ink-0);
 }
 
-/* ---------- Install PWA Button ---------- */
-.install-pwa-btn{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:100;
-  display:none;
-  align-items:center;
-  gap:8px;
-  padding:12px 24px;
-  border-radius:50px;
-  background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-  border:1px solid rgba(255,255,255,.2);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  color:#fff;
-  font-family:var(--arabic);
-  font-size:14px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 8px 32px rgba(0,0,0,.4);
-  transition:all .3s ease;
-  animation:slideUp .5s ease both;
-}
-.install-pwa-btn:hover{
-  background:linear-gradient(135deg, rgba(255,255,255,.2), rgba(255,255,255,.1));
-  border-color:rgba(255,255,255,.4);
-  transform:translateX(-50%) translateY(-2px);
-  box-shadow:0 12px 40px rgba(0,0,0,.5);
-}
-.install-pwa-btn:active{
-  transform:translateX(-50%) translateY(0) scale(.98);
-}
-.install-pwa-btn svg{
-  width:18px;
-  height:18px;
-}
-
 /* ---------- footer ---------- */
 .stage-footer{
   margin-top:auto;
@@ -488,13 +408,8 @@ html,body{
   100%{ background-position:200% 50%; }
 }
 
-@keyframes slideUp{
-  from{opacity:0; transform:translateX(-50%) translateY(20px);}
-  to{opacity:1; transform:translateX(-50%) translateY(0);}
-}
-
 @media (prefers-reduced-motion: reduce){
-  .brand-block, .glass-link, .install-pwa-btn{animation:none !important; opacity:1 !important; transform:none !important;}
+  .brand-block, .glass-link{animation:none !important; opacity:1 !important; transform:none !important;}
   .link-icon, .status-dot, .glow, .logo-ring::before, .brand-name{animation:none !important;}
 }
 
@@ -502,46 +417,11 @@ html,body{
   .brand-name{font-size:28px; letter-spacing:3px;}
   .logo-ring{width:100px;height:100px;}
   .glass-link{padding:14px;}
-  .install-pwa-btn{font-size:13px; padding:10px 18px;}
 }
 
-/* Offline indicator */
-.offline-indicator{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:200;
-  background:rgba(255,59,48,.9);
-  color:#fff;
-  text-align:center;
-  padding:8px;
-  font-size:13px;
-  font-family:var(--arabic);
-  transform:translateY(-100%);
-  transition:transform .3s ease;
-}
-.offline-indicator.show{
-  transform:translateY(0);
-}
 </style>
-<base target="_blank">
 </head>
 <body>
-
-<!-- Offline Indicator -->
-<div class="offline-indicator" id="offlineIndicator">
-  ⚠️ أنت غير متصل بالإنترنت. بعض الميزات قد لا تعمل.
-</div>
-
-<!-- Video Background -->
-<div class="video-bg-container" aria-hidden="true">
-  <video autoplay muted loop playsinline poster="logo.png" id="bgVideo">
-    <source src="vid.mp4" type="video/mp4">
-    <!-- Fallback for browsers that don't support video -->
-  </video>
-  <div class="video-overlay"></div>
-</div>
 
 <div class="weave-bg" aria-hidden="true"></div>
 <div class="glow glow-a" aria-hidden="true"></div>
@@ -554,7 +434,8 @@ html,body{
       <img src="logo.png" alt="شعار Fantex" class="logo-img">
       <span class="ring-shine" aria-hidden="true"></span>
     </div>
-    <h1 class="brand-name">FANTEX MAG 2</h1>
+    <h1 class="brand-name">FANTEX</h1>
+    <p class="brand-tagline">نُسيج يعكس أناقتك</p>
   </header>
 
   <nav class="links" aria-label="روابط التواصل">
@@ -565,7 +446,7 @@ html,body{
       </span>
       <span class="link-text">
         <span class="link-title">إنستغرام</span>
-
+        <span class="link-sub">fan.tex@</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
@@ -577,18 +458,7 @@ html,body{
       </span>
       <span class="link-text">
         <span class="link-title">واتساب</span>
-
-      </span>
-      <span class="link-arrow" aria-hidden="true">↗</span>
-    </a>
-
-    <a class="glass-link link-wa-group" href="https://chat.whatsapp.com/EfWTxQ0TtNr9MMoBs7KNrb?s=cl&p=a&ilr=1" target="_blank" rel="noopener" style="--d:2">
-      <span class="link-icon icon-wa-group">
-        <span class="status-dot" aria-hidden="true"></span>
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="link-title">قروب واتساب</span>
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
@@ -600,7 +470,7 @@ html,body{
       </span>
       <span class="link-text">
         <span class="link-title">فايبر</span>
-
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
@@ -612,18 +482,18 @@ html,body{
       </span>
       <span class="link-text">
         <span class="link-title">اتصال مباشر</span>
-
+        <span class="link-sub" dir="ltr">+213 560 34 41 87</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
 
-    <a class="glass-link link-maps" href="https://maps.app.goo.gl/K2mtFHZdCbeqRyMz7" target="_blank" rel="noopener" style="--d:4">
+    <a class="glass-link link-maps" href="https://www.google.com/maps/search/?api=1&query=MXX9%2BQF4+Baba+Hassen" target="_blank" rel="noopener" style="--d:4">
       <span class="link-icon icon-maps">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></svg>
       </span>
       <span class="link-text">
         <span class="link-title">الموقع على الخريطة</span>
-
+        <span class="link-sub">Baba Hassen, Alger</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
@@ -634,7 +504,7 @@ html,body{
       </span>
       <span class="link-text">
         <span class="link-title">فيسبوك</span>
-
+        <span class="link-sub">Fantex</span>
       </span>
       <span class="link-arrow" aria-hidden="true">↗</span>
     </a>
@@ -646,16 +516,6 @@ html,body{
   </footer>
 
 </main>
-
-<!-- PWA Install Button -->
-<button class="install-pwa-btn" id="installBtn" aria-label="تثبيت التطبيق">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-    <polyline points="7 10 12 15 17 10"/>
-    <line x1="12" y1="15" x2="12" y2="3"/>
-  </svg>
-  <span>تثبيت التطبيق</span>
-</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -703,80 +563,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => ripple.remove(), 600);
     });
   });
-
-  // ===== PWA Install Logic =====
-  let deferredPrompt;
-  const installBtn = document.getElementById('installBtn');
-
-  // Listen for the beforeinstallprompt event
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'flex';
-  });
-
-  // Handle install button click
-  installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      installBtn.style.display = 'none';
-    }
-    deferredPrompt = null;
-  });
-
-  // Hide button if already installed
-  window.addEventListener('appinstalled', () => {
-    installBtn.style.display = 'none';
-    deferredPrompt = null;
-  });
-
-  // ===== Offline Detection =====
-  const offlineIndicator = document.getElementById('offlineIndicator');
-
-  function updateOnlineStatus() {
-    if (navigator.onLine) {
-      offlineIndicator.classList.remove('show');
-    } else {
-      offlineIndicator.classList.add('show');
-    }
-  }
-
-  window.addEventListener('online', updateOnlineStatus);
-  window.addEventListener('offline', updateOnlineStatus);
-  updateOnlineStatus();
-
-  // ===== Service Worker Registration =====
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then((registration) => {
-        console.log('Service Worker registered:', registration.scope);
-      })
-      .catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
-  }
-
-  // ===== Video Background Fallback =====
-  const video = document.getElementById('bgVideo');
-  if (video) {
-    // Ensure video plays (some browsers block autoplay)
-    video.play().catch((err) => {
-      console.log('Video autoplay blocked:', err);
-      // Video poster will show as fallback
-    });
-
-    // Pause video when tab is hidden to save resources
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        video.pause();
-      } else {
-        video.play().catch(() => {});
-      }
-    });
-  }
 });
+
 </script>
 </body>
 </html>
