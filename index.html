@@ -41,6 +41,42 @@ body{
 }
 
 /* brand */
+.top-bar{
+  position:relative;
+  height:64px;
+  margin-bottom:6px;
+}
+.badge{
+  position:absolute;
+  top:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  min-width:58px;
+  height:60px;
+  padding:8px 10px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  color:var(--ink);
+  font-family:var(--font);
+  cursor:default;
+}
+.badge svg{width:18px;height:18px;fill:currentColor;flex:0 0 auto;}
+.badge strong{font-size:14px;font-weight:800;line-height:1;direction:ltr;}
+.badge small{font-size:10px;font-weight:600;color:var(--ink-3);line-height:1;}
+.counter-badge{left:0;}
+.dev-badge{
+  right:0;
+  border:1px solid var(--line);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.dev-badge:active{transform:scale(.94);}
+
 .brand{text-align:center;margin-bottom:32px;}
 .logo{
   width:104px;height:104px;
@@ -210,8 +246,21 @@ dialog[open]{animation:pop .2s ease;}
 
 <main class="stage">
 
+  <div class="top-bar">
+    <span class="badge counter-badge" id="scan-counter" aria-label="عدد الزيارات">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      <strong id="scan-count">—</strong>
+      <small>زيارة</small>
+    </span>
+
+    <button type="button" class="badge dev-badge" id="dev-open" aria-haspopup="dialog" aria-label="معلومات المطور">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/></svg>
+      <small>المطور</small>
+    </button>
+  </div>
+
   <header class="brand">
-    <img class="logo" src="ChatGPT Image Sep 26, 2026, 12_18_58 PM.png" alt="شعار Fantex" width="104" height="104" fetchpriority="high">
+    <img class="logo" src="logo.png" alt="شعار Fantex" width="104" height="104" fetchpriority="high">
     <h1>FANTEX MAG 2</h1>
   </header>
 
@@ -263,19 +312,6 @@ dialog[open]{animation:pop .2s ease;}
     </a>
 
   </nav>
-
-  <section class="counter" id="scan-counter">
-    <strong id="scan-count">—</strong>
-    <span>زيارة</span>
-  </section>
-
-  <section class="dev" aria-labelledby="dev-h">
-    <h2 class="dev-h" id="dev-h">معلومات المطور</h2>
-    <button type="button" class="card dv" id="dev-open" aria-haspopup="dialog">
-      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.7 16.6 4.1 12l4.6-4.6L7.3 6 1.3 12l6 6 1.4-1.4zm6.6 0 4.6-4.6-4.6-4.6L16.7 6l6 6-6 6-1.4-1.4z"/></svg></span>
-      <span class="t"><b>تم تصميم وتطوير هذه الصفحة بواسطة باحيو محمد</b></span>
-    </button>
-  </section>
 
   <footer>© <span id="year"></span> Fantex — جميع الحقوق محفوظة</footer>
 </main>
