@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f6f3">
+<title>Fantex — تواصل معنا</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f3;
+  --card:#fff;
+  --ink:#141414;
+  --ink-2:#5f5f5f;
+  --ink-3:#9a9a9a;
+  --line:rgba(20,20,20,.09);
+  --shadow:0 1px 2px rgba(20,20,20,.05);
+  --r:16px;
+  --font:'Tajawal',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font);
+  -webkit-font-smoothing:antialiased;
+}
+.stage{
+  max-width:440px;
+  margin:0 auto;
+  padding:44px 18px calc(28px + env(safe-area-inset-bottom));
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* brand */
+.top-bar{
+  position:relative;
+  height:64px;
+  margin-bottom:6px;
+}
+.badge{
+  position:absolute;
+  top:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  min-width:58px;
+  height:60px;
+  padding:8px 10px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  color:var(--ink);
+  font-family:var(--font);
+  cursor:default;
+}
+.badge svg{width:18px;height:18px;fill:currentColor;flex:0 0 auto;}
+.badge strong{font-size:14px;font-weight:800;line-height:1;direction:ltr;}
+.badge small{font-size:10px;font-weight:600;color:var(--ink-3);line-height:1;}
+.counter-badge{left:0;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.counter-badge:active{transform:scale(.94);}
+.dev-badge{
+  right:0;
+  border:1px solid var(--line);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.dev-badge:active{transform:scale(.94);}
+
+.brand{text-align:center;margin-bottom:32px;}
+.install-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  margin:-14px 0 22px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--ink);
+  color:#fff;
+  font-family:var(--font);
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+.install-btn svg{width:18px;height:18px;fill:currentColor;}
+.install-btn:active{opacity:.85;}
+
+.hours{
+  margin-top:22px;
+  padding:16px 16px 6px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.hours-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:12px;
+}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--ink-3);flex:0 0 auto;}
+.dot.open{background:#1fa855;}
+.dot.closed{background:#e0473f;}
+.hours-h{margin:0 0 10px;font-size:13px;font-weight:700;color:var(--ink-2);}
+.hours-list{list-style:none;margin:0;padding:0;}
+.hours-list li{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+  border-top:1px solid var(--line);
+  font-size:14px;
+}
+.hours-list li:first-child{border-top:0;}
+.hours-list li span:last-child{color:var(--ink-2);direction:ltr;}
+.hours-list li span.off{color:#e0473f;font-weight:700;}
+
+.visits-list{list-style:none;margin:0;padding:0;text-align:start;}
+.visits-list li{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:11px 2px;
+  border-top:1px solid var(--line);
+  font-size:14px;
+}
+.visits-list li:first-child{border-top:0;}
+.visits-list li span:last-child{color:var(--ink-3);font-size:12.5px;direction:ltr;white-space:nowrap;}
+.visits-empty{color:var(--ink-3);justify-content:center !important;border-top:0 !important;}
+
+.logo{
+  width:104px;height:104px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 18px;
+  background:#0a0a0a;
+  border:1px solid var(--line);
+  box-shadow:0 4px 14px rgba(20,20,20,.12);
+}
+.brand h1{
+  margin:0;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+/* link cards */
+.links{display:flex;flex-direction:column;gap:10px;}
+.card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  min-height:64px;
+  padding:12px 14px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  color:var(--ink);
+  text-decoration:none;
+  font:inherit;
+  text-align:start;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.card::after{
+  content:"‹";
+  margin-inline-start:auto;
+  font-size:24px;
+  line-height:1;
+  color:var(--ink-3);
+}
+.ico{
+  flex:0 0 auto;
+  width:42px;height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:var(--c);
+  background:color-mix(in srgb, var(--c) 11%, #fff);
+}
+.ico svg{width:20px;height:20px;fill:currentColor;}
+.t{display:flex;flex-direction:column;min-width:0;}
+.t b{font-size:16px;font-weight:700;}
+.t small{font-size:12.5px;color:var(--ink-3);direction:ltr;text-align:start;}
+@media (hover:hover){
+  .card:hover{border-color:var(--c, var(--ink-3));background:#fcfcfb;}
+}
+.card:active{transform:scale(.985);}
+.card:focus-visible,.close:focus-visible,.dev-links a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+
+.ig{--c:#d62976}
+.wa{--c:#1fa855}
+.vb{--c:#7360f2}
+.tel{--c:#141414}
+.map{--c:#4285f4}
+.fb{--c:#1877f2}
+.dv{--c:#141414}
+
+/* QR counter (hidden until Firebase is connected) */
+.counter{
+  margin:22px 0 0;
+  text-align:center;
+}
+.counter[hidden]{display:none;}
+.counter strong{display:block;font-size:30px;font-weight:800;letter-spacing:.5px;}
+.counter span{font-size:13px;color:var(--ink-2);}
+
+.dev{margin-top:22px;}
+.dev-h{margin:0 0 8px 0;padding:0 4px;font-size:13px;font-weight:700;color:var(--ink-2);}
+
+footer{
+  margin-top:auto;
+  padding-top:32px;
+  text-align:center;
+  font-size:12px;
+  color:var(--ink-3);
+}
+
+/* developer modal */
+dialog{
+  width:min(92vw,400px);
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--card);
+  color:var(--ink);
+  font-family:var(--font);
+  box-shadow:0 20px 50px rgba(20,20,20,.18);
+}
+dialog::backdrop{background:rgba(20,20,20,.35);}
+dialog[open]{animation:pop .2s ease;}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sheet{padding:24px 20px 20px;text-align:center;position:relative;}
+.close{
+  position:absolute;top:10px;inset-inline-end:10px;
+  width:36px;height:36px;
+  border:0;border-radius:50%;
+  background:#f1f0ed;color:var(--ink-2);
+  font-size:20px;line-height:1;cursor:pointer;
+}
+.dev-photo{
+  width:88px;height:88px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:0 auto 14px;
+  background:#f1f0ed;
+  border:1px solid var(--line);
+}
+.sheet h2{margin:0 0 2px;font-size:22px;font-weight:800;}
+.role{margin:0 0 10px;font-size:14px;color:var(--ink-2);direction:ltr;}
+.bio{margin:0 0 16px;font-size:14px;line-height:1.6;color:var(--ink-2);}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:18px;}
+.chips span{
+  padding:6px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#f7f6f3;
+  font-size:13px;font-weight:500;
+  direction:ltr;
+}
+.dev-links{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.dev-links a{
+  padding:11px 8px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  color:var(--ink);
+  text-decoration:none;
+  font-size:14px;font-weight:500;
+}
+/* placeholder links (href="#") stay inactive until you add a real URL */
+.dev-links a[href="#"]{opacity:.45;pointer-events:none;}
+.note{margin:14px 0 0;font-size:11.5px;color:var(--ink-3);}
+
+@media (max-width:360px){
+  .stage{padding-inline:14px;}
+  .brand h1{font-size:23px;}
+  .logo{width:92px;height:92px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- icon sprite: WhatsApp and Maps are reused, so they are defined once -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M19.527 4.799c1.212 2.608.937 5.678-.405 8.173-1.101 2.047-2.744 3.74-4.098 5.614-.619.858-1.244 1.75-1.669 2.727-.141.325-.263.658-.383.992-.121.333-.224.673-.34 1.008-.109.314-.236.684-.627.687h-.007c-.466-.001-.579-.53-.695-.887-.284-.874-.581-1.713-1.019-2.525-.51-.944-1.145-1.817-1.79-2.671L19.527 4.799zM8.545 7.705l-3.959 4.707c.724 1.54 1.821 2.863 2.871 4.18.247.31.494.622.737.936l4.984-5.925-.029.01c-1.741.601-3.691-.291-4.392-1.987a3.377 3.377 0 0 1-.209-.716c-.063-.437-.077-.761-.004-1.198l.001-.007zM5.492 3.149l-.003.004c-1.947 2.466-2.281 5.88-1.117 8.77l4.785-5.689-.058-.05-3.607-3.035zM14.661.436l-3.838 4.563a.295.295 0 0 1 .027-.01c1.6-.551 3.403.15 4.22 1.626.176.319.323.683.377 1.045.068.446.085.773.012 1.22l-.003.016 3.836-4.561A8.382 8.382 0 0 0 14.67.439l-.009-.003zM9.466 5.868L14.162.285l-.047-.012A8.31 8.31 0 0 0 11.986 0a8.439 8.439 0 0 0-6.169 2.766l-.016.018 3.665 3.084z"/></symbol>
+</svg>
+
+<main class="stage">
+
+  <div class="top-bar">
+    <button type="button" class="badge counter-badge" id="scan-counter" aria-haspopup="dialog" aria-label="عدد الزيارات، اضغط لعرض آخر الزيارات">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      <strong id="scan-count">—</strong>
+      <small>زيارة</small>
+    </button>
+
+    <button type="button" class="badge dev-badge" id="dev-open" aria-haspopup="dialog" aria-label="معلومات المطور">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9v2.5h19.6v-2.5c0-3.3-6.5-4.9-9.8-4.9z"/></svg>
+      <small>المطور</small>
+    </button>
+  </div>
+
+  <header class="brand">
+    <img class="logo" src="logo.png" alt="شعار Fantex" width="104" height="104" fetchpriority="high">
+    <h1>FANTEX MAG 2</h1>
+  </header>
+
+  <button type="button" class="install-btn" id="install-btn" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6h4V4h4v6h4l-6 6zm-7 2h14v2H5v-2z"/></svg>
+    ثبّت الصفحة على هاتفك
+  </button>
+
+  <nav class="links" aria-label="روابط التواصل">
+
+    <a class="card ig" href="https://www.instagram.com/fan.tex?igsh=MWRoNmRwdGVmamh5NA==" target="_blank" rel="noopener">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></span>
+      <span class="t"><b>إنستغرام</b></span>
+    </a>
+
+    <a class="card wa" href="https://wa.me/213560344187" target="_blank" rel="noopener">
+      <span class="ico"><svg aria-hidden="true"><use href="#i-wa"/></svg></span>
+      <span class="t"><b>واتساب</b><small>+213 560 344 187</small></span>
+    </a>
+
+    <a class="card wa" href="https://chat.whatsapp.com/EfWTxQ0TtNr9MMoBs7KNrb" target="_blank" rel="noopener">
+      <span class="ico"><svg aria-hidden="true"><use href="#i-wa"/></svg></span>
+      <span class="t"><b>مجموعة واتساب</b></span>
+    </a>
+
+    <a class="card vb" href="viber://chat?number=%2B213560344187">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817.57 12.933.488 18.776 6.12 20.36h.003l-.004 2.416s-.037.977.61 1.177c.777.242 1.234-.5 1.98-1.302.407-.44.972-1.084 1.397-1.58 3.85.326 6.812-.416 7.15-.525.776-.252 5.176-.816 5.892-6.657.74-6.02-.36-9.83-2.34-11.546-.596-.55-3.006-2.3-8.375-2.323 0 0-.395-.025-1.037-.017zm.058 1.693c.545-.004.88.017.88.017 4.542.02 6.717 1.388 7.222 1.846 1.675 1.435 2.53 4.868 1.906 9.897v.002c-.604 4.878-4.174 5.184-4.832 5.395-.28.09-2.882.737-6.153.524 0 0-2.436 2.94-3.197 3.704-.12.12-.26.167-.352.144-.13-.033-.166-.188-.165-.414l.02-4.018c-4.762-1.32-4.485-6.292-4.43-8.895.054-2.604.543-4.738 1.996-6.173 1.96-1.773 5.474-2.018 7.11-2.03zm.38 2.602c-.167 0-.303.135-.304.302 0 .167.133.303.3.305 1.624.01 2.946.537 4.028 1.592 1.073 1.046 1.62 2.468 1.633 4.334.002.167.14.3.307.3.166-.002.3-.138.3-.304-.014-1.984-.618-3.596-1.816-4.764-1.19-1.16-2.692-1.753-4.447-1.765zm-3.96.695c-.19-.032-.4.005-.616.117l-.01.002c-.43.247-.816.562-1.146.932-.002.004-.006.004-.008.008-.267.323-.42.638-.46.948-.008.046-.01.093-.007.14 0 .136.022.27.065.4l.013.01c.135.48.473 1.276 1.205 2.604.42.768.903 1.5 1.446 2.186.27.344.56.673.87.984l.132.132c.31.308.64.6.984.87.686.543 1.418 1.027 2.186 1.447 1.328.733 2.126 1.07 2.604 1.206l.01.014c.13.042.265.064.402.063.046.002.092 0 .138-.008.31-.036.627-.19.948-.46.004 0 .003-.002.008-.005.37-.33.683-.72.93-1.148l.003-.01c.225-.432.15-.842-.18-1.12-.004 0-.698-.58-1.037-.83-.36-.255-.73-.492-1.113-.71-.51-.285-1.032-.106-1.248.174l-.447.564c-.23.283-.657.246-.657.246-3.12-.796-3.955-3.955-3.955-3.955s-.037-.426.248-.656l.563-.448c.277-.215.456-.737.17-1.248-.217-.383-.454-.756-.71-1.115-.25-.34-.826-1.033-.83-1.035-.137-.165-.31-.265-.502-.297zm4.49.88c-.158.002-.29.124-.3.282-.01.167.115.312.282.324 1.16.085 2.017.466 2.645 1.15.63.688.93 1.524.906 2.57-.002.168.13.306.3.31.166.003.305-.13.31-.297.025-1.175-.334-2.193-1.067-2.994-.74-.81-1.777-1.253-3.05-1.346h-.024zm.463 1.63c-.16.002-.29.127-.3.287-.008.167.12.31.288.32.523.028.875.175 1.113.422.24.245.388.62.416 1.164.01.167.15.295.318.287.167-.008.295-.15.287-.317-.03-.644-.215-1.178-.58-1.557-.367-.378-.893-.574-1.52-.607h-.018z"/></svg></span>
+      <span class="t"><b>فايبر</b><small>+213 560 344 187</small></span>
+    </a>
+
+    <a class="card tel" href="tel:+213560344187">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span>
+      <span class="t"><b>اتصل بنا</b><small>+213 560 344 187</small></span>
+    </a>
+
+    <a class="card map" href="https://maps.app.goo.gl/fdPddg6BShgyhkkz8" target="_blank" rel="noopener">
+      <span class="ico"><svg aria-hidden="true"><use href="#i-map"/></svg></span>
+      <span class="t"><b>موقع هذا المحل</b></span>
+    </a>
+
+    <a class="card map" href="https://maps.app.goo.gl/QdpRm9Tn29Me6pUp8" target="_blank" rel="noopener">
+      <span class="ico"><svg aria-hidden="true"><use href="#i-map"/></svg></span>
+      <span class="t"><b>MAGAZINE 1</b></span>
+    </a>
+
+    <a class="card map" href="https://maps.app.goo.gl/KZSho9jADrYcyKUDA" target="_blank" rel="noopener">
+      <span class="ico"><svg aria-hidden="true"><use href="#i-map"/></svg></span>
+      <span class="t"><b>MAGAZINE 3</b></span>
+    </a>
+
+    <a class="card fb" href="https://www.facebook.com/share/1BtmpaiWxA/" target="_blank" rel="noopener">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span>
+      <span class="t"><b>فيسبوك</b></span>
+    </a>
+
+  </nav>
+
+  <section class="hours" aria-labelledby="hours-h">
+    <div class="hours-status">
+      <span class="dot" id="status-dot"></span>
+      <strong id="status-text">—</strong>
+    </div>
+    <h2 class="hours-h" id="hours-h">أوقات العمل</h2>
+    <ul class="hours-list">
+      <li><span>السبت — الثلاثاء</span><span>07:30 — 16:00</span></li>
+      <li><span>الأربعاء</span><span>07:30 — 15:30</span></li>
+      <li><span>الخميس</span><span>07:30 — 13:00</span></li>
+      <li><span>الجمعة</span><span class="off">مغلق</span></li>
+    </ul>
+  </section>
+
+  <footer>© <span id="year"></span> Fantex — جميع الحقوق محفوظة</footer>
+</main>
+
+<dialog id="dev-modal" aria-labelledby="dev-name">
+  <div class="sheet">
+    <button type="button" class="close" id="dev-close" aria-label="إغلاق">×</button>
+    <img class="dev-photo" src="profil.png" alt="صورة باحيو محمد" width="88" height="88">
+    <h2 id="dev-name">باحيو محمد</h2>
+    <p class="role">Web &amp; App Developer</p>
+    <p class="bio">أطوّر مواقع وتطبيقات ويب/موبايل بسيطة وسريعة، من الفكرة إلى النشر.</p>
+    <div class="chips">
+      <span>Flutter</span>
+      <span>HTML / CSS / JavaScript</span>
+      <span>Firebase</span>
+    </div>
+    <div class="dev-links">
+      <a href="https://github.com/Gt2433" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.instagram.com/mouh_gt3rs?stkn=aG4xaDdqcnhlYjM2" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/213655603829" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.tiktok.com/@mbd_dev1?_r=1&amp;_t=ZS-9A3DHha822m" target="_blank" rel="noopener">TikTok</a>
+    </div>
+
+    <h3 class="dev-h" style="margin-top:18px;text-align:start">من أعمالي</h3>
+    <div class="dev-links">
+      <a href="https://hhcgjvhcnk-ux.github.io/MH-Manwir-web/" target="_blank" rel="noopener">MH Manwir</a>
+      <a href="https://shopmd340-alt.github.io/MDShop/" target="_blank" rel="noopener">MDShop</a>
+      <a href="https://walidifyai-glitch.github.io/walidify/" target="_blank" rel="noopener">Walidify</a>
+      <a href="https://hhcgjvhcnk-ux.github.io/Ramz/" target="_blank" rel="noopener">Ramz</a>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="visits-modal" aria-labelledby="visits-h">
+  <div class="sheet">
+    <button type="button" class="close" id="visits-close" aria-label="إغلاق">×</button>
+    <h2 id="visits-h" style="font-size:19px">آخر 5 زيارات</h2>
+    <p class="role" style="direction:rtl;margin-bottom:14px">
+      لا يمكن لأي موقع معرفة رقم هاتف الزائر — هذه فقط أجهزة مجهولة الهوية برزت وقت الزيارة
+    </p>
+    <ul class="visits-list" id="visits-list">
+      <li class="visits-empty">جارِ التحميل…</li>
+    </ul>
+  </div>
+</dialog>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+(function(){
+  var m = document.getElementById('dev-modal');
+  document.getElementById('dev-open').addEventListener('click', function(){ m.showModal(); });
+  document.getElementById('dev-close').addEventListener('click', function(){ m.close(); });
+  m.addEventListener('click', function(e){ if (e.target === m) m.close(); });
+})();
+
+(function(){
+  var m = document.getElementById('visits-modal');
+  document.getElementById('scan-counter').addEventListener('click', function(){ m.showModal(); });
+  document.getElementById('visits-close').addEventListener('click', function(){ m.close(); });
+  m.addEventListener('click', function(e){ if (e.target === m) m.close(); });
+})();
+
+// register the no-cache service worker so the page can be installed
+// as an app icon; it never stores old content, always fetches fresh
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(e){
+      console.error('SW registration failed:', e);
+    });
+  });
+}
+
+// show the install button when the browser says the app is installable
+// (Android/Chrome). iOS Safari has no such event, so we show manual steps.
+(function(){
+  var btn = document.getElementById('install-btn');
+  var deferredPrompt = null;
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  if (isStandalone) return; // already installed, nothing to show
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.hidden = false;
+  });
+
+  if (isIOS) {
+    btn.hidden = false; // show it, but with instructions instead of a native prompt
+  }
+
+  btn.addEventListener('click', function(){
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.finally(function(){
+        deferredPrompt = null;
+        btn.hidden = true;
+      });
+    } else if (isIOS) {
+      alert('لإضافة الصفحة لشاشتك الرئيسية:\n\n1. اضغط زر المشاركة (المربع والسهم) بأسفل شاشة سفاري\n2. اختر "إضافة إلى الشاشة الرئيسية"');
+    }
+  });
+})();
+
+// working hours: shows open/closed automatically based on the visitor's clock
+(function(){
+  var schedule = {
+    0: [[7.5, 16]],   // Sunday
+    1: [[7.5, 16]],   // Monday
+    2: [[7.5, 16]],   // Tuesday
+    3: [[7.5, 15.5]], // Wednesday
+    4: [[7.5, 13]],   // Thursday
+    5: [],            // Friday - closed
+    6: [[7.5, 16]]    // Saturday
+  };
+  var now = new Date();
+  var hours = now.getHours() + now.getMinutes() / 60;
+  var ranges = schedule[now.getDay()] || [];
+  var isOpen = ranges.some(function(r){ return hours >= r[0] && hours < r[1]; });
+
+  var dot = document.getElementById('status-dot');
+  var text = document.getElementById('status-text');
+  if (isOpen) {
+    dot.className = 'dot open';
+    text.textContent = 'مفتوح الآن';
+  } else {
+    dot.className = 'dot closed';
+    text.textContent = 'مغلق حاليًا';
+  }
+})();
+</script>
+
+<!-- Firebase: counts every page open as a visit. Uses a transaction so simultaneous
+     visitors never overwrite each other, and the database Rules only allow the
+     value to move up by exactly 1 each write (see Realtime Database → Rules). -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-database-compat.js"></script>
+<script>
+(function(){
+  var firebaseConfig = {
+    apiKey: "AIzaSyBpHb5JTrtaesgfYm132tcQkCtqaHF82yg",
+    authDomain: "fan-soch.firebaseapp.com",
+    databaseURL: "https://fan-soch-default-rtdb.firebaseio.com/",
+    projectId: "fan-soch",
+    storageBucket: "fan-soch.firebasestorage.app",
+    messagingSenderId: "857649947596",
+    appId: "1:857649947596:web:9595048f7f58228927b369"
+  };
+
+  try {
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.database();
+    var visitsRef = db.ref('stats/visits');
+    var recentRef = db.ref('stats/recentVisits');
+    var countEl = document.getElementById('scan-count');
+    var DEVICE_KEY = 'fantex_scanned';
+
+    // only the first open on this device/browser counts toward the total;
+    // later opens or refreshes from the same device are ignored
+    if (!localStorage.getItem(DEVICE_KEY)) {
+      visitsRef.transaction(function(current){
+        return (current || 0) + 1;
+      });
+      try { localStorage.setItem(DEVICE_KEY, '1'); } catch (e) {}
+    }
+
+    // keep the number on screen in sync with the database either way
+    visitsRef.on('value', function(snap){
+      var v = snap.val();
+      countEl.textContent = (typeof v === 'number') ? v.toLocaleString('ar') : '—';
+    });
+
+    // --- anonymous "recent visits" log ---
+    // No website can ever read a visitor's real phone number or identity.
+    // This only records the device/browser type and time of each open,
+    // and keeps just the last 5 entries.
+    function deviceLabel(){
+      var ua = navigator.userAgent;
+      var os = 'جهاز غير معروف';
+      if (/ipad/i.test(ua)) os = 'iPad';
+      else if (/iphone/i.test(ua)) os = 'iPhone';
+      else if (/android/i.test(ua)) os = 'Android';
+      else if (/windows/i.test(ua)) os = 'Windows';
+      else if (/macintosh|mac os/i.test(ua)) os = 'Mac';
+      else if (/linux/i.test(ua)) os = 'Linux';
+
+      var browser = 'متصفح';
+      if (/edg\//i.test(ua)) browser = 'Edge';
+      else if (/samsungbrowser/i.test(ua)) browser = 'Samsung Internet';
+      else if (/firefox|fxios/i.test(ua)) browser = 'Firefox';
+      else if (/chrome|crios/i.test(ua)) browser = 'Chrome';
+      else if (/safari/i.test(ua)) browser = 'Safari';
+
+      return os + ' • ' + browser;
+    }
+
+    function timeAgo(ts){
+      var diff = Math.floor((Date.now() - ts) / 1000);
+      if (diff < 60) return 'الآن';
+      if (diff < 3600) return Math.floor(diff / 60) + ' د';
+      if (diff < 86400) return Math.floor(diff / 3600) + ' س';
+      return Math.floor(diff / 86400) + ' ي';
+    }
+
+    // log this open, then trim to the last 5 entries
+    var newEntryRef = recentRef.push();
+    newEntryRef.set({ time: Date.now(), device: deviceLabel() }).then(function(){
+      return recentRef.once('value');
+    }).then(function(snap){
+      var keys = [];
+      snap.forEach(function(child){ keys.push(child.key); });
+      var extra = keys.length - 5;
+      if (extra > 0) {
+        for (var i = 0; i < extra; i++) {
+          recentRef.child(keys[i]).remove();
+        }
+      }
+    }).catch(function(e){ console.error('recentVisits log error:', e); });
+
+    // render the list live inside the modal
+    var listEl = document.getElementById('visits-list');
+    recentRef.on('value', function(snap){
+      var items = [];
+      snap.forEach(function(child){ items.push(child.val()); });
+      items.sort(function(a, b){ return b.time - a.time; });
+
+      if (!items.length) {
+        listEl.innerHTML = '<li class="visits-empty">لا زيارات مسجّلة بعد</li>';
+        return;
+      }
+      listEl.innerHTML = items.map(function(it, i){
+        return '<li><span>زيارة ' + (i + 1) + ' — ' + it.device + '</span><span>' + timeAgo(it.time) + '</span></li>';
+      }).join('');
+    });
+  } catch (e) {
+    console.error('Firebase counter error:', e);
+  }
+})();
+</script>
+</body>
+</html>
