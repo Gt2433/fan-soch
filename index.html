@@ -340,13 +340,18 @@ document.getElementById('year').textContent = new Date().getFullYear();
     firebase.initializeApp(firebaseConfig);
     var visitsRef = firebase.database().ref('stats/visits');
     var countEl = document.getElementById('scan-count');
+    var DEVICE_KEY = 'fantex_scanned';
 
-    // register this page open as one visit (safe under concurrent visitors)
-    visitsRef.transaction(function(current){
-      return (current || 0) + 1;
-    });
+    // only the first open on this device/browser counts as a visit;
+    // later opens or refreshes from the same device are ignored
+    if (!localStorage.getItem(DEVICE_KEY)) {
+      visitsRef.transaction(function(current){
+        return (current || 0) + 1;
+      });
+      try { localStorage.setItem(DEVICE_KEY, '1'); } catch (e) {}
+    }
 
-    // keep the number on screen in sync with the database
+    // keep the number on screen in sync with the database either way
     visitsRef.on('value', function(snap){
       var v = snap.val();
       countEl.textContent = (typeof v === 'number') ? v.toLocaleString('ar') : '—';
