@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f7f6f3">
 <title>Fantex — تواصل معنا</title>
-<link rel="icon" href="logo.png" type="image/png">
+<link rel="icon" href="ChatGPT Image Sep 26, 2026, 12_18_58 PM.png" type="image/png">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -242,31 +242,58 @@ dialog{
   width:min(92vw,400px);
   padding:0;
   border:1px solid var(--line);
-  border-radius:20px;
+  border-radius:22px;
   background:var(--card);
   color:var(--ink);
   font-family:var(--font);
-  box-shadow:0 20px 50px rgba(20,20,20,.18);
+  box-shadow:0 24px 60px rgba(20,20,20,.22);
+  overflow:hidden;
+  max-height:88vh;
 }
-dialog::backdrop{background:rgba(20,20,20,.35);}
-dialog[open]{animation:pop .2s ease;}
-@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.sheet{padding:24px 20px 20px;text-align:center;position:relative;}
+dialog::backdrop{background:rgba(20,20,20,.4);backdrop-filter:blur(2px);}
+dialog[open]{animation:pop .25s cubic-bezier(.2,.7,.2,1);}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.sheet{padding:24px 20px 20px;text-align:center;position:relative;overflow-y:auto;max-height:88vh;}
+.dev-sheet{padding:0;}
 .close{
   position:absolute;top:10px;inset-inline-end:10px;
-  width:36px;height:36px;
+  width:34px;height:34px;
   border:0;border-radius:50%;
-  background:#f1f0ed;color:var(--ink-2);
-  font-size:20px;line-height:1;cursor:pointer;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(6px);
+  color:var(--ink);
+  font-size:19px;line-height:1;cursor:pointer;
+  box-shadow:0 2px 8px rgba(20,20,20,.12);
+  z-index:2;
 }
+
+/* profile-style header: a cover image with the round photo
+   overlapping its lower half, like a social profile card */
+.dev-cover{
+  position:relative;
+  height:118px;
+  background-image:url('back.png');
+  background-size:cover;
+  background-position:center;
+  background-color:#141414;
+}
+.dev-cover::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,0) 55%);
+}
+.dev-body{padding:0 20px 20px;}
 .dev-photo{
-  width:88px;height:88px;
+  width:104px;height:104px;
   border-radius:50%;
   object-fit:cover;
   display:block;
-  margin:0 auto 14px;
+  position:relative;
+  z-index:1;
+  margin:-52px auto 12px;
   background:#f1f0ed;
-  border:1px solid var(--line);
+  border:4px solid #fff;
+  box-shadow:0 8px 22px rgba(20,20,20,.2), 0 0 0 1px rgba(20,20,20,.04);
 }
 .sheet h2{margin:0 0 2px;font-size:22px;font-weight:800;}
 .role{margin:0 0 10px;font-size:14px;color:var(--ink-2);direction:ltr;}
@@ -402,31 +429,35 @@ dialog[open]{animation:pop .2s ease;}
   <footer>© <span id="year"></span> Fantex — جميع الحقوق محفوظة</footer>
 </main>
 
-<dialog id="dev-modal" aria-labelledby="dev-name">
-  <div class="sheet">
-    <button type="button" class="close" id="dev-close" aria-label="إغلاق">×</button>
-    <img class="dev-photo" src="profil.png" alt="صورة باحيو محمد" width="88" height="88">
-    <h2 id="dev-name">باحيو محمد</h2>
-    <p class="role">Web &amp; App Developer</p>
-    <p class="bio">أطوّر مواقع وتطبيقات ويب/موبايل بسيطة وسريعة، من الفكرة إلى النشر.</p>
-    <div class="chips">
-      <span>Flutter</span>
-      <span>HTML / CSS / JavaScript</span>
-      <span>Firebase</span>
+<dialog id="dev-modal" aria-labelledby="dev-name" class="dev-dialog">
+  <div class="sheet dev-sheet">
+    <div class="dev-cover">
+      <button type="button" class="close" id="dev-close" aria-label="إغلاق">×</button>
     </div>
-    <div class="dev-links">
-      <a href="https://github.com/Gt2433" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.instagram.com/mouh_gt3rs?stkn=aG4xaDdqcnhlYjM2" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/213655603829" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://www.tiktok.com/@mbd_dev1?_r=1&amp;_t=ZS-9A3DHha822m" target="_blank" rel="noopener">TikTok</a>
-    </div>
+    <div class="dev-body">
+      <img class="dev-photo" src="profil.png" alt="صورة باحيو محمد" width="104" height="104">
+      <h2 id="dev-name">باحيو محمد</h2>
+      <p class="role">Web &amp; App Developer</p>
+      <p class="bio">أطوّر مواقع وتطبيقات ويب/موبايل بسيطة وسريعة، من الفكرة إلى النشر.</p>
+      <div class="chips">
+        <span>Flutter</span>
+        <span>HTML / CSS / JavaScript</span>
+        <span>Firebase</span>
+      </div>
+      <div class="dev-links">
+        <a href="https://github.com/Gt2433" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/mouh_gt3rs?stkn=aG4xaDdqcnhlYjM2" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/213655603829" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.tiktok.com/@mbd_dev1?_r=1&amp;_t=ZS-9A3DHha822m" target="_blank" rel="noopener">TikTok</a>
+      </div>
 
-    <h3 class="dev-h" style="margin-top:18px;text-align:start">من أعمالي</h3>
-    <div class="dev-links">
+      <h3 class="dev-h" style="margin-top:18px;text-align:start">من أعمالي</h3>
+      <div class="dev-links">
       <a href="https://hhcgjvhcnk-ux.github.io/MH-Manwir-web/" target="_blank" rel="noopener">MH Manwir</a>
       <a href="https://shopmd340-alt.github.io/MDShop/" target="_blank" rel="noopener">MDShop</a>
       <a href="https://walidifyai-glitch.github.io/walidify/" target="_blank" rel="noopener">Walidify</a>
       <a href="https://hhcgjvhcnk-ux.github.io/Ramz/" target="_blank" rel="noopener">Ramz</a>
+      </div>
     </div>
   </div>
 </dialog>
